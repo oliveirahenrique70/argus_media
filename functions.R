@@ -1,3 +1,7 @@
+# Argus Media Technical Assessment
+# Made by Henrique Oliveira
+# April 2023
+
 #### DATA PRE-PROCESSING ####
 
 filter_deal_period <- function(df) {
