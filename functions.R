@@ -109,6 +109,8 @@ line_plot <- function(df) {
         legend.title = element_text(size = 14),
         legend.text = element_text(size = 12))
 
-  return(ggplotly(plot, tooltip = "text") %>%
-           layout(height = 600, width = 1400))
+  plot_din <- ggplotly(plot, tooltip = "text") %>%
+    layout(height = 600, width = 1400)
+
+  return(plot_din)
 }
