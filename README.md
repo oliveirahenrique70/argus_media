@@ -1,6 +1,7 @@
 # Argus Media Technical Assessment
+
 Made by Henrique Oliveira
-br()
+
 April 2023
 
 ## Task
