@@ -9,7 +9,7 @@ filter_deal_period <- function(df) {
 set_dates_format <- function(df) {
   df %>%
     mutate(`DEAL DATE` = dmy(`DEAL DATE`)) %>%
-    mutate("DELIVERY DATE" = my(str_c(df$`DELIVERY MONTH`, "-", df$`DELIVERY YEAR`)))
+    mutate(`DELIVERY DATE` = my(str_c(df$`DELIVERY MONTH`, "-", df$`DELIVERY YEAR`)))
 }
 
 create_indices_column <- function(df) {
@@ -17,7 +17,8 @@ create_indices_column <- function(df) {
     mutate(
       INDICES = case_when(
         COMMODITY == "Coal" & `DELIVERY LOCATION` %in% c("ARA", "AMS", "ROT", "ANT") ~ "COAL2",
-        COMMODITY == "Coal" & `COMMODITY SOURCE LOCATION` == "South Africa" ~ "COAL4"
+        COMMODITY == "Coal" & `COMMODITY SOURCE LOCATION` == "South Africa" ~ "COAL4",
+        TRUE ~ NA_character_
       )
     )
 }
@@ -53,7 +54,7 @@ dates_range <- function(df) {
   )
 }
 
-indices_picker <- function(df){
+indices_picker <- function(df) {
   pickerInput(
     inputId = "indices_picker",
     label = NULL,
@@ -86,7 +87,7 @@ calculate_VWAP <- function(df) {
     summarise(`TOTAL VOLUME` = sum(VOLUME),
               `TOTAL PRICE` = sum(PRICE),
               `NUMBER OF INDICES` = n(),
-              VWAP = sum(PRICE * VOLUME)/ `TOTAL VOLUME`) %>%
+              VWAP = sum(PRICE * VOLUME) / `TOTAL VOLUME`) %>%
     mutate(hoover_text = str_c(
       "<br>Index: ", INDICES,
       "<br>Deal Date: ", `DEAL DATE`,
@@ -95,19 +96,19 @@ calculate_VWAP <- function(df) {
 
 line_plot <- function(df) {
 
-  plot <- ggplot(df, aes(x= `DEAL DATE`, y = VWAP, color = INDICES)) +
+  plot <- ggplot(df, aes(x = `DEAL DATE`, y = VWAP, color = INDICES)) +
   labs(title = "Volume Weighted Average Price (VWAP)", x = "Deal Date", color = "Index") +
   geom_line() +
   geom_point(aes(text = hoover_text), size = 0.5) +
   scale_x_date(date_labels = "%d %b") +
   theme_minimal() +
-  scale_color_brewer(palette="Set1") +
-  theme(axis.text = element_text(size=12),
-        axis.title = element_text(size=14),
-        plot.title = element_text(size=16, face = "bold", hjust = 0.5),
-        legend.title = element_text(size=14),
-        legend.text = element_text(size=12))
-  
+  scale_color_brewer(palette = "Set1") +
+  theme(axis.text = element_text(size = 12),
+        axis.title = element_text(size = 14),
+        plot.title = element_text(size = 16, face = "bold", hjust = 0.5),
+        legend.title = element_text(size = 14),
+        legend.text = element_text(size = 12))
+
   return(ggplotly(plot, tooltip = "text") %>%
            layout(height = 600, width = 1400))
 }

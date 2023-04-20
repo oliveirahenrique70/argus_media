@@ -20,10 +20,10 @@ source("functions.R")
 #### USER INTERFACE ####
 
 ui <- fluidPage(
-  
+
   # Set Bootstrap theme
   theme = bs_theme(bootswatch = "cerulean"),
-  
+
   # App title
   titlePanel(h3(tags$b("Indices Analyzer App"),
                 tags$small(tags$em(" created by Henrique Oliveira")),
@@ -38,7 +38,8 @@ ui <- fluidPage(
 
     sidebarPanel(
       width = 2,
-      a(href = "https://www.argusmedia.com/", img(src = "logo.png", width = "100%")),
+      a(href = "https://www.argusmedia.com/",
+        img(src = "logo.png", width = "100%")),
       hr(),
 
       sibebar_section("Import Data"),
@@ -62,7 +63,7 @@ ui <- fluidPage(
 
     mainPanel(
       width = 10,
-      
+
       tabsetPanel(
         tabPanel("Line Plot",
                  br(),
@@ -77,7 +78,7 @@ ui <- fluidPage(
 
 # Apply server logic
 server <- function(input, output, session) {
-  
+
   df <- eventReactive(input$import_data, {
 
     # Requested inputs
@@ -85,7 +86,7 @@ server <- function(input, output, session) {
 
     # Read input files
     df <- read_csv(input$import_data$datapath)
-    
+
     # Data pre-processing
     df <- df %>%
       set_dates_format() %>%
@@ -133,7 +134,7 @@ server <- function(input, output, session) {
 
   # Create table data
   df_table <- eventReactive(input$submit, {
-    calculate_VWAP(df_react())%>%
+    calculate_VWAP(df_react()) %>%
       select(-c(hoover_text)) %>%
       mutate(VWAP = round(VWAP, 2))
   })
@@ -147,7 +148,7 @@ server <- function(input, output, session) {
 
   # Render table output
   output$table <- renderDT(df_table(),
-                           options = list(columnDefs = list(list(className = 'dt-center', targets = "_all"))))
+                           options = list(columnDefs = list(list(className = "dt-center", targets = "_all"))))
 
   #### WRITE OUTPUT AND MSG ####
 
@@ -177,5 +178,5 @@ server <- function(input, output, session) {
   })
 }
 
-# Run the application 
+# Run the application
 shinyApp(ui = ui, server = server)
