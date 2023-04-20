@@ -23,5 +23,5 @@ The objective of the assessment is to create *R Shiny* app that allows user to s
 * Output: Contains buttons to submit the analysis and save the output as a CSV file.
 
 ### Main Panel
-* Line Plot: Displays a line plot of the indices Volume Weighted Average Price over time.
+* Line Plot: Displays a line plot of the indices VWAP over time.
 * Data Table: Displays a table of the indices info.
