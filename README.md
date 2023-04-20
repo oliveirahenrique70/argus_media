@@ -1,8 +1,10 @@
 # Argus Media Technical Assessment
 
-Made by **Henrique Oliveira**
+Made by **Henrique Oliveira** 
 
 April 2023
+
+Check out more info about at (apps.hodatascience.com.br)[https://apps.hodatascience.com.br/]
 
 ## Task
 The objective of the assessment is to create *R Shiny* app that allows user to select and import financial indices data, calculate the calculated as a Volume Weighted Average Price (VWAP) of the indeces price for each day that is included in the raw data, display it as a table and chart in the app and add a button to save the output as CSV file.
