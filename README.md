@@ -2,7 +2,7 @@
 
 Made by **Henrique Oliveira** 
 
-April 2023
+April, 2023
 
 Check out more info about the author at [apps.hodatascience.com.br](https://apps.hodatascience.com.br/)
 
@@ -10,7 +10,6 @@ Check out more info about the author at [apps.hodatascience.com.br](https://apps
 The objective of the assessment is to create *R Shiny* app that allows user to select and import financial indices data, calculate the calculated as a Volume Weighted Average Price (VWAP) of the indeces price for each day that is included in the raw data, display it as a table and chart in the app and add a button to save the output as CSV file.
 
 ## App Overview
-
 * The `app.R` file contains the code to run the web application. It is the main file that defines the user interface and server logic of a *R Shiny* app.
 * The `function.R` file contains all functions used in the app.
 * The `www` folder contains the dataset and a image used in the app.
