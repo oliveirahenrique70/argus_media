@@ -1,8 +1,8 @@
 # Argus Media Technical Assessment
 
-Made by Henrique Oliveira 
+*Made by Henrique Oliveira*
 
-April, 2023
+*April, 2023*
 
 Check out more about the author at [apps.hodatascience.com.br](https://apps.hodatascience.com.br/)
 
